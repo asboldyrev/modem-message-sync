@@ -1,0 +1,26 @@
+{
+    "name": "asboldyrev/modem-message-sync",
+    "description": "A package for synchronizing SMS messages from a modem.",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "8.2",
+        "phpseclib/phpseclib": "^3.0",
+        "asboldyrev/apprise-notification-sdk": "^1.0",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Asboldyrev\\ModemMessageSync\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "asboldyrev",
+            "email": "angelcorpc@ya.ru"
+        }
+    ]
+}
