@@ -4,10 +4,11 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "8.2",
+        "php": "8.2.*",
         "phpseclib/phpseclib": "^3.0",
         "asboldyrev/apprise-notification-sdk": "^1.0",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "php-mqtt/client": "^1.8"
     },
     "autoload": {
         "psr-4": {

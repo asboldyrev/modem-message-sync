@@ -5,6 +5,8 @@ namespace Asboldyrev\ModemMessageSync;
 use Asboldyrev\AppriseNotificationSdk\Client;
 use Asboldyrev\AppriseNotificationSdk\Content;
 use Asboldyrev\AppriseNotificationSdk\Enums\Format;
+use PhpMqtt\Client\ConnectionSettings;
+use PhpMqtt\Client\MqttClient;
 
 class NotificationSender
 {
@@ -27,5 +29,22 @@ class NotificationSender
 				$chatId ?? env('TELEGRAM_CHAT_ID')
 			)
 			->send();
+	}
+
+
+	public static function sendMqttNotification(string $content, string $sender) {
+		$client = new MqttClient(env('MQTT_SERVER'), clientId:env('MQTT_CLIENT_ID'));
+		$settings = (new ConnectionSettings())
+			->setUsername(env('MQTT_USERNAME'))
+			->setPassword(env('MQTT_PASSWORD'));
+		$client->connect($settings, true);
+
+		if ($client->isConnected()) {
+			$client->publish(env('MQTT_TOPIC'), $content);
+			$client->disconnect();
+		} else {
+			echo 'Connection failed!' . PHP_EOL;
+		}
+
 	}
 }

@@ -43,6 +43,10 @@ foreach ($processedSms as $newSms) {
 
 		NotificationSender::sendTelegramNotification($content, $newSms->sender);
 
+		if($newSms->sender == env('MQTT_TRIGGER_SENDER')) {
+			NotificationSender::sendMqttNotification($newSms->data, $newSms->sender);
+		}
+
 		echo $newSms->sender . PHP_EOL;
 		echo $content . PHP_EOL;
 	}
